@@ -61,6 +61,10 @@ namespace Yandex.Music.Api
         /// API пользователя
         /// </summary>
         public YUserAPI User { get; internal set; }
+        /// <summary>
+        /// API истории 
+        /// </summary>
+        public YHistoryAPI History { get; internal set; }
 
         #endregion Ветки API
 
