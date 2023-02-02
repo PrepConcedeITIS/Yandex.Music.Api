@@ -22,11 +22,10 @@ namespace Yandex.Music.Api.API
         /// <param name="playlistId"></param>
         /// <param name="totalPlayedSeconds"></param>
         /// <returns></returns>
-        public async Task<bool> AddTrackToHistoryAsync(AuthStorage storage, YTrack track, string clientName = null,
-            string playlistId = null, int? totalPlayedSeconds = null, int? endPositionSeconds = null)
+        public async Task<bool> AddTrackToHistoryAsync(AuthStorage storage, AddHistoryRequestModel model)
         {
             var result = await new YAddHistoryBuilder(api, storage)
-                .Build((track, clientName, playlistId, totalPlayedSeconds, endPositionSeconds))
+                .Build(model)
                 .GetResponseAsync();
             return result?.Result == "ok";
         }
