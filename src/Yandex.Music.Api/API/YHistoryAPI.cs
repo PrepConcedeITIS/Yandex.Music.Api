@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Yandex.Music.Api.Common;
-using Yandex.Music.Api.Models.Track;
+using Yandex.Music.Api.Models.History;
 using Yandex.Music.Api.Requests.History;
 
 namespace Yandex.Music.Api.API
@@ -18,11 +18,9 @@ namespace Yandex.Music.Api.API
         /// Добавить альбом в список лайкнутых
         /// </summary>
         /// <param name="storage">Хранилище</param>
-        /// <param name="track">Трек</param>
-        /// <param name="playlistId"></param>
-        /// <param name="totalPlayedSeconds"></param>
+        /// <param name="model">Модель данных</param>
         /// <returns></returns>
-        public async Task<bool> AddTrackToHistoryAsync(AuthStorage storage, AddHistoryRequestModel model)
+        public async Task<bool> AddTrackToHistoryAsync(AuthStorage storage, YAddHistoryRequestModel model)
         {
             var result = await new YAddHistoryBuilder(api, storage)
                 .Build(model)
