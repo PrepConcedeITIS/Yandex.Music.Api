@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -51,6 +52,7 @@ namespace Yandex.Music.Client
 
         #region Авторизация
 
+        [Obsolete("Работает лишь на малом количестве аккаунтов, рекомендуется авторизация по токену.")]
         public bool Authorize(string login, string password)
         {
             api.User.Authorize(storage, login, password);
@@ -190,11 +192,6 @@ namespace Yandex.Music.Client
         public List<YPlaylist> GetFavorites()
         {
             return api.Playlist.Favorites(storage).Result;
-        }
-
-        public YPlaylist GetAlice()
-        {
-            return api.Playlist.Alice(storage).Result;
         }
 
         public YPlaylist GetDejaVu()
