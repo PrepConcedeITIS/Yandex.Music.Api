@@ -9,6 +9,8 @@ API переделано под работу с API официального п�
 
 [История версий](https://github.com/K1llMan/Yandex.Music.Api/blob/master/CHANGELOG.md)
 
+[Telegram-чат](https://t.me/yandex_music_api)
+
 Функционал
 -------
 
@@ -20,7 +22,6 @@ API для удобства разделено на следующие ветк�
 YandexMusicApi
 │
 ├── Users
-│   ├── Authorize / Async (AuthStorage storage, string username, string password) [Obsolete]
 │   ├── Authorize / Async (AuthStorage storage, string token)
 │   ├── GetUserAuth / Async (AuthStorage storage)
 │   ├── CreateAuthSession / Async (AuthStorage storage, string userName)
@@ -31,19 +32,22 @@ YandexMusicApi
 │   ├── GetAuthLetter / Async (AuthStorage storage)
 │   ├── AuthorizeByLetter / Async (AuthStorage storage)
 │   ├── AuthorizeByAppPassword / Async (AuthStorage storage, string password)
-│   └── GetAccessToken / Async (AuthStorage storage)
+│   ├── GetAccessToken / Async (AuthStorage storage)
+│   └── GetLoginInfo / Async (AuthStorage storage)
 ├── Track
 │   ├── Get / Async (AuthStorage storage, string trackId)
 │   ├── Get / Async (AuthStorage storage, IEnumerable<string> trackIds)
 │   ├── GetMetadataForDownload / Async (AuthStorage storage, string trackKey, bool direct)
 │   ├── GetMetadataForDownload / Async (AuthStorage storage, YTrack track, bool direct)
 │   ├── GetDownloadFileInfo / Async (AuthStorage storage, YTrackDownloadInfoResponse metadataInfo)
-│   ├── GetFileLink (AuthStorage storage, string trackKey)
-│   ├── GetFileLink (AuthStorage storage, YTrack track)
-│   ├── ExtractToFile (AuthStorage storage, string trackKey, string filePath)
-│   ├── ExtractToFile (AuthStorage storage, YTrack track, string filePath)
-│   ├── ExtractData (AuthStorage storage, string trackKey)
-│   ├── ExtractData (AuthStorage storage, YTrack track)
+│   ├── GetFileLink / Async (AuthStorage storage, string trackKey)
+│   ├── GetFileLink / Async (AuthStorage storage, YTrack track)
+│   ├── ExtractToFile / Async (AuthStorage storage, string trackKey, string filePath)
+│   ├── ExtractToFile / Async (AuthStorage storage, YTrack track, string filePath)
+│   ├── ExtractData / Async (AuthStorage storage, string trackKey)
+│   ├── ExtractData / Async (AuthStorage storage, YTrack track)
+│   ├── ExtractStream / Async (AuthStorage storage, string trackKey)
+│   ├── ExtractStream / Async (AuthStorage storage, YTrack track)
 │   ├── GetSupplement / Async (AuthStorage storage, string trackId)
 │   ├── GetSupplement / Async (AuthStorage storage, YTrack track)
 │   ├── GetSimilar / Async (AuthStorage storage, string trackId)
@@ -53,7 +57,9 @@ YandexMusicApi
 │   └── Get / Async (AuthStorage storage, IEnumerable<string> albumIds)
 ├── Artist
 │   ├── Get / Async (AuthStorage storage, string artistId)
-│   └── Get / Async (AuthStorage storage, IEnumerable<string> artistIds)
+│   ├── Get / Async (AuthStorage storage, IEnumerable<string> artistIds)
+│   ├── GetTracks / Async (AuthStorage storage, string artistId, int page = 0, int pageSize = 20)
+│   └── GetAllTracks / Async (AuthStorage storage, string artistId)
 ├── Landing
 │   ├── Get / Async (AuthStorage storage, params YLandingBlockType[] blocks)
 │   └── Feed / Async (AuthStorage storage)
@@ -66,7 +72,7 @@ YandexMusicApi
 │   ├── DejaVu / Async (AuthStorage storage)
 │   ├── Premiere / Async (AuthStorage storage)
 │   ├── Missed / Async (AuthStorage storage)
-│   ├── Podcasts / Async (AuthStorage storage)
+│   ├── Kinopoisk / Async (AuthStorage storage)
 │   ├── Create / Async (AuthStorage storage, string name)
 │   ├── Rename / Async (AuthStorage storage, string kinds, string name)
 │   ├── Rename / Async (AuthStorage storage, YPlaylist playlist, string name)
@@ -91,14 +97,14 @@ YandexMusicApi
 │   ├── AddPlaylistLike / Async(AuthStorage storage, YPlaylist playlist)
 │   └── RemovePlaylistLike / Async(AuthStorage storage, YPlaylist playlist)
 ├── Search
-│   ├── Track / Async (AuthStorage storage, string trackName, int pageNumber = 0)
-│   ├── Albums / Async (AuthStorage storage, string albumName, int pageNumber = 0)
-│   ├── Artist / Async (AuthStorage storage, string artistName, int pageNumber = 0)
-│   ├── Playlist / Async (AuthStorage storage, string playlistName, int pageNumber = 0)
-│   ├── PodcastEpisode / Async (AuthStorage storage, string podcastName, int pageNumber = 0)
-│   ├── Videos / Async (AuthStorage storage, string videoName, int pageNumber = 0)
-│   ├── Users / Async (AuthStorage storage, string videoName, int pageNumber = 0) *
-│   ├── Search / Async (AuthStorage storage, string searchText, YSearchType searchType, int page = 0)
+│   ├── Track / Async (AuthStorage storage, string trackName, int pageNumber = 0, int pageSize = 20)
+│   ├── Albums / Async (AuthStorage storage, string albumName, int pageNumber = 0, int pageSize = 20)
+│   ├── Artist / Async (AuthStorage storage, string artistName, int pageNumber = 0, int pageSize = 20)
+│   ├── Playlist / Async (AuthStorage storage, string playlistName, int pageNumber = 0, int pageSize = 20)
+│   ├── PodcastEpisode / Async (AuthStorage storage, string podcastName, int pageNumber = 0, int pageSize = 20)
+│   ├── Videos / Async (AuthStorage storage, string videoName, int pageNumber = 0, int pageSize = 20)
+│   ├── Users / Async (AuthStorage storage, string videoName, int pageNumber = 0, int pageSize = 20) *
+│   ├── Search / Async (AuthStorage storage, string searchText, YSearchType searchType, int page = 0, int pageSize = 20)
 │   └── Suggest / Async (AuthStorage storage, string searchText)
 ├── Radio
 │   ├── GetStationsDashboard / Async (AuthStorage storage)
@@ -117,8 +123,6 @@ YandexMusicApi
 ```
 
 Функции, помеченные звёздочкой, вероятно, не работают или передают неверные параметры.
-
-Отсутствует функционал радио.
 
 ## LICENCE
 [GNU General Public License v3.0](https://github.com/K1llMan/Yandex.Music.Api/blob/master/LICENSE)

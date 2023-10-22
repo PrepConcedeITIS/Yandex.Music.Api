@@ -9,23 +9,11 @@ Track API
 
    public Task<YResponse<List<YTrack>>> GetAsync(AuthStorage storage, string trackId)
 
-Получение трека в асинхронном режиме.
-
-.. code-block:: csharp
-
-   public YResponse<List<YTrack>> Get(AuthStorage storage, string trackId)
-
 Получение трека.
 
 .. code-block:: csharp
 
    public Task<YResponse<List<YTrack>>> GetAsync(AuthStorage storage, IEnumerable<string> trackIds)
-
-Получение списка треков в асинхронном режиме.
-
-.. code-block:: csharp
-
-   public YResponse<List<YTrack>> Get(AuthStorage storage, IEnumerable<string> trackIds)
 
 Получение списка треков.
 
@@ -36,23 +24,11 @@ Track API
 
    public async Task<YResponse<List<YTrackDownloadInfo>>> GetMetadataForDownloadAsync(AuthStorage storage, string trackKey, bool direct)
 
-Получение метаданных для загрузки в асинхронном режиме.
-
-.. code-block:: csharp
-
-   public YResponse<List<YTrackDownloadInfo>> GetMetadataForDownload(AuthStorage storage, string trackKey, bool direct = false)
-
 Получение метаданных для загрузки.
 
 .. code-block:: csharp
 
    public async Task<YResponse<List<YTrackDownloadInfo>>> GetMetadataForDownloadAsync(AuthStorage storage, YTrack track, bool direct = false)
-
-Получение метаданных для загрузки в асинхронном режиме.
-
-.. code-block:: csharp
-
-   public YResponse<List<YTrackDownloadInfo>> GetMetadataForDownload(AuthStorage storage, YTrack track, bool direct = false)
 
 Получение метаданных для загрузки.
 
@@ -60,59 +36,59 @@ Track API
 
    public async Task<YStorageDownloadFile> GetDownloadFileInfoAsync(AuthStorage storage, YTrackDownloadInfo metadataInfo)
 
-Получение данных для формирования ссылки в асинхронном режиме.
-
-.. code-block:: csharp
-
-   public YStorageDownloadFile GetDownloadFileInfo(AuthStorage storage, YTrackDownloadInfo metadataInfo)
-
 Получение данных для формирования ссылки.
 
 .. code-block:: csharp
 
-   public string GetFileLink(AuthStorage storage, string trackKey)
+   public string GetFileLinkAsync(AuthStorage storage, string trackKey)
 
 Получение ссылки.
 
 .. code-block:: csharp
 
-   public string GetFileLink(AuthStorage storage, YTrack track)
+   public string GetFileLinkAsync(AuthStorage storage, YTrack track)
 
 Получение ссылки.
 
 .. code-block:: csharp
 
-   public void ExtractToFile(AuthStorage storage, string trackKey, string filePath)
+   public void ExtractToFileAsync(AuthStorage storage, string trackKey, string filePath)
 
 Сохранение в файл.
 
 .. code-block:: csharp
 
-   public void ExtractToFile(AuthStorage storage, YTrack track, string filePath)
+   public void ExtractToFileAsync(AuthStorage storage, YTrack track, string filePath)
 
 Сохранение в файл.
 
 .. code-block:: csharp
 
-   public byte[] ExtractData(AuthStorage storage, string trackKey)
+   public byte[] ExtractDataAsync(AuthStorage storage, string trackKey)
 
 Получение данных в виде двоичного массива.
 
 .. code-block:: csharp
 
-   public byte[] ExtractData(AuthStorage storage, YTrack track)
+   public byte[] ExtractDataAsync(AuthStorage storage, YTrack track)
 
 Получение данных в виде двоичного массива.
+
+.. code-block:: csharp
+
+   public byte[] ExtractStreamAsync(AuthStorage storage, string trackKey)
+
+Получение данных в виде потока.
+
+.. code-block:: csharp
+
+   public byte[] ExtractStreamAsync(AuthStorage storage, YTrack track)
+
+Получение данных в виде потока.
 
 .. code-block:: csharp
 
    public Task<YResponse<YTrackSupplement>> GetSupplementAsync(AuthStorage storage, string trackId)
-
-Получение дополнительной информации для трека.
-
-.. code-block:: csharp
-
-   public YResponse<YTrackSupplement> GetSupplement(AuthStorage storage, string trackId)
 
 Получение дополнительной информации для трека.
 
@@ -124,30 +100,12 @@ Track API
 
 .. code-block:: csharp
 
-   public YResponse<YTrackSupplement> GetSupplement(AuthStorage storage, YTrack track)
-
-Получение дополнительной информации для трека.
-
-.. code-block:: csharp
-
    public Task<YResponse<YTrackSimilar>> GetSimilarAsync(AuthStorage storage, string trackId)
 
 Получение похожих треков.
 
 .. code-block:: csharp
 
-   public YResponse<YTrackSimilar> GetSimilar(AuthStorage storage, string trackId)
-
-Получение похожих треков.
-
-.. code-block:: csharp
-
    public Task<YResponse<YTrackSimilar>> GetSimilarAsync(AuthStorage storage, YTrack track)
-
-Получение похожих треков.
-
-.. code-block:: csharp
-
-   public YResponse<YTrackSimilar> GetSimilar(AuthStorage storage, YTrack track)
 
 Получение похожих треков.

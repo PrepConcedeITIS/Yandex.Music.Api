@@ -31,12 +31,6 @@ YandexMusicClient
 
 .. code-block:: csharp
 
-   public bool Authorize(string login, string password)
-
-Авторизация с использованием логина и пароля.
-
-.. code-block:: csharp
-
    public bool Authorize(string token)
 
 Авторизация с использованием токена.
@@ -89,6 +83,12 @@ YandexMusicClient
    public YAuthBase AuthorizeByAppPassword(string password)
 
 Авторизация с помощью пароля из приложения Яндекс.
+
+.. code-block:: csharp
+
+   public YLoginInfo GetLoginInfo()
+
+Получение информации о пользователе через логин Яндекса.
 
 .. code-block:: csharp
 
@@ -206,7 +206,7 @@ YandexMusicClient
 
 .. code-block:: csharp
 
-   public YSearch Search(string searchText, YSearchType searchType, int page = 0)
+   public YSearch Search(string searchText, YSearchType searchType, int page = 0, int pageSize = 20)
 
 Поиск.
 

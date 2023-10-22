@@ -12,14 +12,31 @@
 #
 import os
 import sys
+import shutil
 sys.path.insert(0, os.path.abspath('../..'))
 
+# Copy resources
+# def copy_resources(app, docname):
+#     if app.builder.name == 'html':
+#         output_dir = os.path.join(app.outdir, 'src', 'Resources')
+#         source_dir = os.path.join(app.srcdir, '..', '..', 'src', 'Resources')
+#         if not os.path.exists(output_dir):
+#             shutil.copytree(source_dir, output_dir)
+# 
+# def setup(app):
+#     app.connect('build-finished', copy_resources)
+
 master_doc = 'index'
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 # -- Project information -----------------------------------------------------
 
 project = 'Yandex Music API'
-copyright = '2022, K1llM@n'
+copyright = '2023, K1llM@n'
 author = 'K1llM@n, based on Winster332 project'
 
 language = 'ru'
@@ -31,7 +48,9 @@ language = 'ru'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon',
+    'sphinx_copybutton',
+    'myst_parser'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -48,7 +67,8 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinx_rtd_theme'
+html_title = 'Yandex Music API'
+html_theme = 'furo'
 html_search_language = 'ru'
 
 # Add any paths that contain custom static files (such as style sheets) here,

@@ -22,10 +22,16 @@ namespace Yandex.Music.Api.Common.Providers
             if (ex is not WebException webException) 
                 return ex;
 
-            using StreamReader sr = new(webException.Response.GetResponseStream());
+            if (webException.Response is null)
+                return ex;
+
+            Stream s = webException.Response.GetResponseStream();
+            if (s is null)
+                return ex;
+
+            using StreamReader sr = new(s);
             string result = sr.ReadToEnd();
-
-
+                
             YErrorResponse exception = JsonConvert.DeserializeObject<YErrorResponse>(result);
 
             return exception ?? ex;

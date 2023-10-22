@@ -39,6 +39,22 @@ namespace Yandex.Music.Api.Tests.Tests.API
             artists.Result.Count.Should().Be(2);
         }
 
+        [Fact, YandexTrait(TraitGroup.ArtistAPI)]
+        [Order(2)]
+        public void GetTracks_ValidData_True()
+        {
+            YResponse<YTracksPage> tracks = Fixture.API.Artist.GetTracks(Fixture.Storage, artistId, 1, 30);
+            tracks.Result.Tracks.Count.Should().Be(30);
+        }
+        
+        [Fact, YandexTrait(TraitGroup.ArtistAPI)]
+        [Order(3)]
+        public void GetAllTracks_ValidData_True()
+        {
+            YResponse<YTracksPage> tracks = Fixture.API.Artist.GetAllTracks(Fixture.Storage, artistId);
+            tracks.Result.Tracks.Count.Should().BeGreaterThan(30);
+        }
+
         public ArtistAPITest(YandexTestHarness fixture, ITestOutputHelper output) : base(fixture, output)
         {
         }
