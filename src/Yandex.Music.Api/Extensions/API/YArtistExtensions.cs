@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 
+using Yandex.Music.Api.Models.Album;
 using Yandex.Music.Api.Models.Artist;
 using Yandex.Music.Api.Models.Track;
 
@@ -33,6 +34,16 @@ namespace Yandex.Music.Api.Extensions.API
         public static string RemoveLike(this YArtist artist)
         {
             return RemoveLikeAsync(artist).GetAwaiter().GetResult();
+        }
+
+        public static YAlbumsPage GetAlbums(this YArtist artist, int page = 0, int pageSize = 20)
+        {
+            return GetAlbumsAsync(artist, page, pageSize).GetAwaiter().GetResult();
+        }
+
+        public static List<YAlbum> GetAllAlbums(this YArtist artist)
+        {
+            return GetAllAlbumsAsync(artist).GetAwaiter().GetResult();
         }
     }
 }

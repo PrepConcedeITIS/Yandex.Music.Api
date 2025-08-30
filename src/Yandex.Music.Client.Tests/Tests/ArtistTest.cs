@@ -7,6 +7,7 @@ using Xunit.Abstractions;
 using Xunit.Extensions.Ordering;
 
 using Yandex.Music.Api.Extensions.API;
+using Yandex.Music.Api.Models.Album;
 using Yandex.Music.Api.Models.Artist;
 using Yandex.Music.Api.Models.Track;
 
@@ -71,6 +72,14 @@ namespace Yandex.Music.Client.Tests.Tests
             Fixture.Artist.Should().NotBe(null);
 
             Fixture.Artist.Artist.RemoveLike().Should().Be("ok");
+        }
+        
+        [Fact]
+        [Order(6)]
+        public void GetAllAlbums_ValidData_True()
+        {
+            List<YAlbum> tracks = Fixture.Artist.Artist.GetAllAlbums();
+            tracks.Count.Should().BeGreaterThan(5);
         }
 
         public ArtistAPITest(YandexTestHarness fixture, ITestOutputHelper output) : base(fixture, output)

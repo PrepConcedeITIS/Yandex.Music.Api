@@ -59,6 +59,33 @@ namespace Yandex.Music.Api.API
         {
             return GetAllTracksAsync(storage, artistId).GetAwaiter().GetResult();
         }
+        
+        
+        /// <summary>
+        /// Получение альбомов исполнителя с пагинацией
+        /// <remarks>
+        /// Альбомы поставляются по <paramref name="pageSize"/> штук на страницу,
+        /// для получения всех треков необходимо использовать метод <see cref="GetAllAlbums"/> 
+        /// </remarks>
+        /// </summary>
+        /// <param name="storage">Хранилище</param>
+        /// <param name="artistId">Идентификатор исполнителя</param>
+        /// <param name="page">Страница ответов</param>
+        /// <param name="pageSize">Количество альбомов на странице ответов</param>
+        public YResponse<YAlbumsPage> GetAlbums(AuthStorage storage, string artistId, int page = 0, int pageSize = 20)
+        {
+            return GetAlbumsAsync(storage, artistId, page, pageSize).GetAwaiter().GetResult();
+        }
+        
+        /// <summary>
+        /// Получение всех альбомов исполнителя
+        /// </summary>
+        /// <param name="storage">Хранилище</param>
+        /// <param name="artistId">Идентификатор исполнителя</param>
+        public YResponse<YAlbumsPage> GetAllAlbums(AuthStorage storage, string artistId)
+        {
+            return GetAllAlbumsAsync(storage, artistId).GetAwaiter().GetResult();
+        }
 
         #endregion Основные функции
     }

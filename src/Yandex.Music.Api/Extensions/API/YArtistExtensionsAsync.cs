@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using Yandex.Music.Api.Models.Album;
 using Yandex.Music.Api.Models.Artist;
 using Yandex.Music.Api.Models.Track;
 
@@ -39,6 +40,18 @@ namespace Yandex.Music.Api.Extensions.API
         {
             return (await artist.Context.API.Library.RemoveArtistLikeAsync(artist.Context.Storage, artist))
                 .Result;
+        }
+        
+        public static async Task<YAlbumsPage> GetAlbumsAsync(this YArtist artist, int page = 0, int pageSize = 20)
+        {
+            return (await artist.Context.API.Artist.GetAlbumsAsync(artist.Context.Storage, artist.Id, page, pageSize))
+                .Result;
+        }
+
+        public static async Task<List<YAlbum>> GetAllAlbumsAsync(this YArtist artist)
+        {
+            return (await artist.Context.API.Artist.GetAllAlbumsAsync(artist.Context.Storage, artist.Id))
+                .Result.Albums;
         }
     }
 }

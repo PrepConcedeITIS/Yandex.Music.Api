@@ -1,0 +1,13 @@
+using System.Collections.Generic;
+
+using Yandex.Music.Api.Models.Album;
+using Yandex.Music.Api.Models.Common;
+
+namespace Yandex.Music.Api.Models.Artist;
+
+public class YAlbumsPage
+{
+    public YPager Pager { get; set; }
+
+    public List<YAlbum> Albums { get; set; }
+}
